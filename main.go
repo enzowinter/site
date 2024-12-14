@@ -21,6 +21,7 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 	r.StaticFS("/static", gin.Dir("static", false))
 	r.GET("/", handleHome)
+	r.GET("/news.html", handleNews)
 	r.GET("/health", handleHealth)
 	r.NoRoute(handle404)
 	port := os.Getenv("PORT")
@@ -34,8 +35,12 @@ func main() {
 }
 
 func handleHome(c *gin.Context) {
-	c.HTML(200, "index.html", gin.H{
-		"title": "Site Web",
+	c.HTML(200, "index.html", nil)
+}
+
+func handleNews(c *gin.Context) {
+	c.HTML(200, "news.html", gin.H{
+		"title": "Actualités - Enzo's Community",
 	})
 }
 
@@ -63,7 +68,7 @@ func requestLogger() gin.HandlerFunc {
 }
 
 func rateLimiter() gin.HandlerFunc {
-	limiter := rate.NewLimiter(rate.Every(time.Second), 5)
+	limiter := rate.NewLimiter(rate.Every(time.Second), 20)
 	return func(c *gin.Context) {
 		if !limiter.Allow() {
 			c.AbortWithStatus(429)
