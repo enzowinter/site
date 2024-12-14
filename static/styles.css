@@ -71,7 +71,7 @@ nav a.active {
 
 main {
     flex: 1;
-    padding-top: 100px;
+    padding-top: 120px;
 }
 
 @keyframes gradientAnimation {

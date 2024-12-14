@@ -39,9 +39,7 @@ func handleHome(c *gin.Context) {
 }
 
 func handleNews(c *gin.Context) {
-	c.HTML(200, "news.html", gin.H{
-		"title": "Actualités - Enzo's Community",
-	})
+	c.HTML(200, "news.html", nil)
 }
 
 func handleHealth(c *gin.Context) {

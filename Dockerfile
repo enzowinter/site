@@ -16,4 +16,4 @@ RUN chown -R appuser:appuser /app
 USER appuser
 ENV PORT=8080
 EXPOSE 8080
-CMD ["./main"] 
+CMD ["./main"]
